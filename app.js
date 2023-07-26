@@ -8,7 +8,7 @@ app.get('/', (req,res) => {
 });
 app.get('/productos', async (req,res) => {
     try{
-        const [rows] = await pool.query('SELECT * FROM empleados');
+        const [rows] = await pool.query('SELECT * FROM categorias');
         res.json(rows);
     }catch(error){
         console.log(error)
