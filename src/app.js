@@ -15,5 +15,5 @@ app.use((req,res,next) => {
     res.status(404).json({message:'ENDPOINT NOT FOUND'})
 });
 
-app.listen(3000);
-console.log(`Servidor corriendo desde el puerto x`);
+export default app;
+
