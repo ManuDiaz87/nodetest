@@ -51,7 +51,7 @@ export const modificarEmpleado = async (req,res) => {
     const {id} = req.params;
     const {nombre,telefono,direccion,categoria} = req.body;
     try {
-       const [result] = await pool.query('UPDATE empleados SET nombre_completo = IFNULL(?, nombre_completo), direccion =  IFNULL(?, direccion), telefono =  IFNULL(?, telefono), id_categoria = ? WHERE id_empleado = ?', [nombre,direccion,telefono,categoria,id]);
+       const [result] = await pool.query('UPDATE empleados SET nombre_completo = IFNULL(?, nombre_completo), direccion =  IFNULL(?, direccion), telefono =  IFNULL(?, telefono), id_categoria = IFNULL(?, id_categoria) WHERE id_empleado = ?', [nombre,direccion,telefono,categoria,id]);
         console.log(result);
         if(result.affectedRows > 0) {
             const [rows] = await pool.query('SELECT * FROM empleados WHERE id_empleado = ?', [id]);
@@ -60,6 +60,7 @@ export const modificarEmpleado = async (req,res) => {
             res.status(404).json({message: "Empleado no encontrado"});
         }
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message : 'Ha ocurrido un error'});
     }
 
