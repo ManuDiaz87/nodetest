@@ -1,13 +1,13 @@
 import express from 'express';
 import indexEnrutador from './routes/index.routes.js'
-//import empleadosEnrutador from './routes/empleados.routes.js';
+import empleadosEnrutador from './routes/empleados.routes.js';
 
 const app = express();
 
 app.use(express.json());
 
 // EJ. Para anteponer una ruta antes que otras. Ejemplo: api/empleados
-//app.use('/api',empleadosEnrutador);
+app.use('/api',empleadosEnrutador);
 app.use(indexEnrutador);
 
 //PAGE NOT FOUND
